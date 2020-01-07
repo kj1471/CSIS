@@ -10,6 +10,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="https://revealjs.com/css/reveal.css">
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="https://revealjs.com/css/theme/black.css" id="theme">
   <!-- Printing and PDF exports -->
   <script>
@@ -32,26 +69,148 @@
   <p class="author">Kieran Vickers</p>
 </section>
 
+<section><section id="starter" class="titleslide slide level1"><h1>Starter</h1></section><section id="wheres-the-mistake" class="slide level2">
+<h2>Where's the mistake?</h2>
+<p>Find the syntax errors</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">item_costs <span class="op">=</span> [<span class="fl">2.5</span>, <span class="fl">3.75</span>, <span class="fl">1.99</span>, <span class="fl">5.00</span>]  <span class="co"># £</span>
+item_quantities <span class="op">=</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)
+total_cost <span class="op">=</span> <span class="dv">0</span>  <span class="co"># £</span>
+credit_limit <span class="op">=</span> <span class="dv">100</span>  <span class="co"># £</span>
+<span class="cf">if</span> <span class="kw">not</span> <span class="bu">len</span>(item_costs) <span class="op">==</span> <span class="bu">len</span>(item_quantities):
+    <span class="cf">raise</span> <span class="pp">AssertionError</span>(<span class="st">&quot;Invalid Inputs&quot;</span>)
+<span class="cf">for</span> index, item_cost <span class="kw">in</span> item_costs:
+    quantity <span class="op">=</span> item_quantities(index)
+    subtotal <span class="op">=</span> item_costs <span class="op">*</span> quantity
+    total_cost <span class="op">=</span> item_cost
+<span class="cf">if</span> total_cost <span class="op">=&lt;</span> credit_limit:
+    <span class="bu">print</span>(<span class="st">&quot;Sale approved, £&quot;</span> <span class="op">+</span> <span class="bu">str</span>(total_cost))
+<span class="cf">else</span>:
+    <span class="bu">print</span>(<span class="st">&quot;You cannot afford this.&quot;</span>)</code></pre></div>
+</section><section id="mistakes" class="slide level2">
+<h2>Mistakes</h2>
+<p>There are two syntax errors: - <code>item_quantities(index)</code> is a syntax error, to take an item from a list use <code>[</code> &amp; <code>]</code> --&gt; <code>item_quantities[index]</code> - <code>total_cost =&lt; credit_limit</code> is a syntax error --&gt; <code>total_cost &lt;= credit_limit</code></p>
+</section><section id="wheres-the-mistake-1" class="slide level2">
+<h2>Where's the mistake?</h2>
+<p>Find the logical error</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">item_costs <span class="op">=</span> [<span class="fl">2.5</span>, <span class="fl">3.75</span>, <span class="fl">1.99</span>, <span class="fl">5.00</span>]  <span class="co"># £</span>
+item_quantities <span class="op">=</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)
+total_cost <span class="op">=</span> <span class="dv">0</span>  <span class="co"># £</span>
+credit_limit <span class="op">=</span> <span class="dv">100</span>  <span class="co"># £</span>
+<span class="cf">if</span> <span class="kw">not</span> <span class="bu">len</span>(item_costs) <span class="op">==</span> <span class="bu">len</span>(item_quantities):
+    <span class="cf">raise</span> <span class="pp">AssertionError</span>(<span class="st">&quot;Invalid Inputs&quot;</span>)
+<span class="cf">for</span> index, item_cost <span class="kw">in</span> item_costs:
+    quantity <span class="op">=</span> item_quantities[index]
+    subtotal <span class="op">=</span> item_costs <span class="op">*</span> quantity
+    total_cost <span class="op">=</span> item_cost
+<span class="cf">if</span> total_cost <span class="op">&lt;=</span> credit_limit:
+    <span class="bu">print</span>(<span class="st">&quot;Sale approved, £&quot;</span> <span class="op">+</span> <span class="bu">str</span>(total_cost))
+<span class="cf">else</span>:
+    <span class="bu">print</span>(<span class="st">&quot;You cannot afford this.&quot;</span>)</code></pre></div>
+</section><section id="mistakes-1" class="slide level2">
+<h2>Mistakes</h2>
+<p>There is one logic error: - <code>total_cost = item_cost</code> is a logical error - <code>total_cost += item_cost</code></p>
+</section></section>
 <section><section id="what-we-aim-to-cover" class="titleslide slide level1"><h1>What we aim to cover</h1></section><section id="what-we-aim-to-cover-1" class="slide level2">
 <h2>What we aim to cover</h2>
 <ul>
-<li>To do, add learning objectives</li>
-<li>And another one</li>
-<li>And yet another one</li>
-</ul>
-</section><section id="this-lesson" class="slide level2">
-<h2>This Lesson</h2>
-<ul>
-<li>Look at a working product</li>
-<li>Delve into the code</li>
-<li>Python OO basics</li>
+<li>First taste of pygame</li>
+<li>A quick look at an example game in pygame</li>
+<li>Cover some Python basics ready for OO</li>
 </ul>
 </section></section>
 <section><section id="a-pygame-game" class="titleslide slide level1"><h1>A PyGame Game</h1></section><section id="a-pygame-game-1" class="slide level2">
 <h2>A PyGame Game</h2>
 <p>If you go to<br />
-<code>kj1471.github.io/CSIS/Year 12/Pygame/example1.py</code><br />
-and</p>
+<code>tinyurl.com/kj-yr12-ex1</code><br />
+and save this on your own system, you should be able to run it.</p>
+</section><section id="run-it" class="slide level2">
+<h2>Run it</h2>
+<p>Run the pygame as you would any other Python file.<br />
+Don't look at the code yet, but think how it might work?</p>
+</section><section id="a-really-simple-pygame-game" class="slide level2">
+<h2>A REALLY SIMPLE PyGame &quot;Game&quot;</h2>
+<p>If you go to<br />
+<code>tinyurl.com/kj-yr12-ex0</code><br />
+and save this on your own system, you should be able to run it.</p>
+</section><section id="compare-the-games" class="slide level2">
+<h2>Compare the games</h2>
+<p>The second example uses 18 lines of code, what does it do?<br />
+The first example uses 71 lines of code, how much more does it do?</p>
+</section><section id="an-object-oriented-game" class="slide level2">
+<h2>An Object-Oriented Game</h2>
+<p>One more for you to download, go to<br />
+<code>https://tinyurl.com/kj-yr12-ex2</code><br />
+and save this on your own system, you should be able to run it.</p>
+</section><section id="compare-the-games-1" class="slide level2">
+<h2>Compare the games</h2>
+<p>The third example uses 91 lines of code, the first example uses 71 lines of code, what is the difference between running them?</p>
+</section><section id="look-at-the-code" class="slide level2">
+<h2>Look at the code</h2>
+<p>They're the same?!<br />
+Compare the first file (<code>example1.py</code>) and the third file (<code>example2.py</code>).<br />
+Which do you prefer? Which is easier to read? Which would you rather have to fix?<br />
+Which has the most repetition?</p>
+</section></section>
+<section><section id="lets-talk-python" class="titleslide slide level1"><h1>Let's Talk Python</h1></section><section id="lets-talk-python-1" class="slide level2">
+<h2>Let's Talk Python</h2>
+<p>We need to ensure we are all working on the same page. Python is a fantastic language because you can have a working piece of code in seconds, but it has enough features to be incredibly powerful and fast. As a result, there are many many many ways to do the same thing, and always something new to learn.</p>
+</section><section id="variables-constants-and-functions" class="slide level2">
+<h2>Variables, Constants and Functions</h2>
+<p>Python requires you to set a variable or constant before it is used. In Python it is common to use <code>ALL_UPPER_CASE_WITH_UNDERSCORES</code> for constants, and <code>all_lower_case_with_underscores</code> for variables and functions, although there is always debate.</p>
+</section><section id="lists" class="slide level2">
+<h2>Lists</h2>
+<p>Lists are defined using</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_list <span class="op">=</span> [<span class="st">&quot;hello&quot;</span>, <span class="st">&quot;world&quot;</span>]
+my_other_list <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]
+my_empty_list <span class="op">=</span> <span class="bu">list</span>()
+my_other_empty_list <span class="op">=</span> []
+both_lists <span class="op">=</span> my_list <span class="op">+</span> my_other_list
+both_lists.append(<span class="va">False</span>)</code></pre></div>
+<p>What is the value of <code>both_lists</code>?<br />
+It is <em>convention</em> to only store one type in lists, but Python <strong>really</strong> doesn't care.</p>
+</section><section id="tuples-and-dicts" class="slide level2">
+<h2>Tuples and Dicts</h2>
+<p>Tuples are defined using</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_tuple <span class="op">=</span> (<span class="st">&quot;hello&quot;</span>, <span class="dv">5</span>, <span class="va">False</span>)
+my_empty_tuple <span class="op">=</span> <span class="bu">tuple</span>()
+my_other_empty_tuple <span class="op">=</span> ()</code></pre></div>
+<p>With tuples you cannot add or remove from them once defined, it is useful to store a fixed collection of things (such as 2D coordinates).<br />
+I'm not going to use dicts here, but they can be useful.</p>
+</section><section id="selection" class="slide level2">
+<h2>Selection</h2>
+<p>Python has one selection: <code>if expression:</code>, which can be followed by <code>elif</code>s and <code>else</code>. Anything that can evaluate to True or False can be the <code>expression</code>, this includes functions with boolean return types, or...</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_variable <span class="op">=</span> <span class="st">&quot;duck&quot;</span>
+my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]
+<span class="cf">if</span> <span class="st">&quot;hello&quot;</span> <span class="kw">and</span> <span class="dv">5</span> <span class="kw">and</span> my_variable <span class="kw">is</span> <span class="st">&quot;duck&quot;</span> \
+        <span class="kw">and</span> my_list <span class="op">==</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>] <span class="kw">and</span> <span class="dv">2</span> <span class="kw">in</span> my_list <span class="op">\</span>
+        <span class="kw">and</span> <span class="st">&quot;a&quot;</span> <span class="kw">not</span> <span class="kw">in</span> my_variable <span class="kw">and</span> <span class="kw">not</span> []:
+    <span class="bu">print</span>(<span class="st">&quot;This is true?!?&quot;</span>) </code></pre></div>
+</section><section id="loop" class="slide level2">
+<h2>Loop</h2>
+<p>Python has two loops: <code>while expression</code>, which can take any expression an <code>if</code> can.<br />
+The second is <code>for variable(s) in iterable</code>.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">for</span> i <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>):
+    <span class="bu">print</span>(i)
+<span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):
+    <span class="bu">print</span>(j)
+<span class="cf">for</span> k <span class="kw">in</span> <span class="st">&quot;london&quot;</span>:
+    <span class="bu">print</span>(k)
+<span class="cf">for</span> index, value <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="st">&quot;i&quot;</span>, <span class="st">&quot;love&quot;</span>, <span class="st">&quot;pygame&quot;</span>]):
+    <span class="bu">print</span>(index, <span class="st">&quot;--&gt;&quot;</span>, value)
+positions <span class="op">=</span> [(<span class="dv">0</span>, <span class="dv">1</span>), (<span class="dv">5</span>, <span class="dv">2</span>), (<span class="dv">8</span>, <span class="dv">1</span>)]
+<span class="cf">for</span> x, y <span class="kw">in</span> positions:
+    <span class="bu">print</span>(x, y)</code></pre></div>
+</section><section id="types" class="slide level2">
+<h2>Types</h2>
+<p>Python is &quot;duck-typed&quot;.</p>
+<blockquote>
+<p>If it walks like a duck, and talks like a duck, it is a duck.</p>
+</blockquote>
+<p>... in other words, unless something breaks, let's just guess what type something is.<br />
+Python does this quite well (compared to JavaScript), and also allows you to specify types if you <em>really</em> want to.</p>
+</section><section id="types-ii" class="slide level2">
+<h2>Types II</h2>
+<p>Basic/built-in types are: &quot;str&quot;, &quot;float&quot;, &quot;boolean&quot;, &quot;int&quot;, &quot;list&quot;, &quot;tuple&quot;, &quot;dict&quot;, also &quot;builtin_function_or_method&quot;, &quot;function&quot;, &quot;complex&quot; and &quot;type&quot;.</p>
 </section></section>
     </div>
   </div>
