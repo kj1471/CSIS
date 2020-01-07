@@ -1,5 +1,5 @@
 """
-An example of a PyGame game. Excluding comments, it contains ?? line,
+An example of a PyGame game. Excluding comments, it contains 91 line,
 and challenges the user to survive as long as possible avoiding the "bullets"
 comining towards them. This is identical to example1.py but written more OO.
 @author Kieran Vickers
