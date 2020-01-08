@@ -13,7 +13,7 @@ total_cost = 0  # £
 credit_limit = 100  # £
 if not len(item_costs) == len(item_quantities):
     raise AssertionError("Invalid Inputs")
-for index, item_cost in item_costs:
+for index, item_cost in enumerate(item_costs):
     quantity = item_quantities(index)
     subtotal = item_costs * quantity
     total_cost = item_cost
@@ -38,7 +38,7 @@ total_cost = 0  # £
 credit_limit = 100  # £
 if not len(item_costs) == len(item_quantities):
     raise AssertionError("Invalid Inputs")
-for index, item_cost in item_costs:
+for index, item_cost in enumerate(item_costs):
     quantity = item_quantities[index]
     subtotal = item_costs * quantity
     total_cost = item_cost
@@ -143,7 +143,7 @@ if "hello" and 5 and my_variable is "duck" \
     print("This is true?!?") 
 ```
 
-## Loop
+## Iteration
 Python has two loops: `while expression`, which can take any expression an `if` can.  
 The second is `for variable(s) in iterable`.
 ```python
@@ -181,3 +181,5 @@ Look again at `example1.py`. Make changes to it:
 - Can you change the number of bullets on the screen?
 
 # See you next week!
+## See you next week!
+See you next week!

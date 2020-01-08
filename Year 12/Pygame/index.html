@@ -78,7 +78,7 @@ total_cost <span class="op">=</span> <span class="dv">0</span>  <span class="co"
 credit_limit <span class="op">=</span> <span class="dv">100</span>  <span class="co"># £</span>
 <span class="cf">if</span> <span class="kw">not</span> <span class="bu">len</span>(item_costs) <span class="op">==</span> <span class="bu">len</span>(item_quantities):
     <span class="cf">raise</span> <span class="pp">AssertionError</span>(<span class="st">&quot;Invalid Inputs&quot;</span>)
-<span class="cf">for</span> index, item_cost <span class="kw">in</span> item_costs:
+<span class="cf">for</span> index, item_cost <span class="kw">in</span> <span class="bu">enumerate</span>(item_costs):
     quantity <span class="op">=</span> item_quantities(index)
     subtotal <span class="op">=</span> item_costs <span class="op">*</span> quantity
     total_cost <span class="op">=</span> item_cost
@@ -98,7 +98,7 @@ total_cost <span class="op">=</span> <span class="dv">0</span>  <span class="co"
 credit_limit <span class="op">=</span> <span class="dv">100</span>  <span class="co"># £</span>
 <span class="cf">if</span> <span class="kw">not</span> <span class="bu">len</span>(item_costs) <span class="op">==</span> <span class="bu">len</span>(item_quantities):
     <span class="cf">raise</span> <span class="pp">AssertionError</span>(<span class="st">&quot;Invalid Inputs&quot;</span>)
-<span class="cf">for</span> index, item_cost <span class="kw">in</span> item_costs:
+<span class="cf">for</span> index, item_cost <span class="kw">in</span> <span class="bu">enumerate</span>(item_costs):
     quantity <span class="op">=</span> item_quantities[index]
     subtotal <span class="op">=</span> item_costs <span class="op">*</span> quantity
     total_cost <span class="op">=</span> item_cost
@@ -185,8 +185,8 @@ my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2
         <span class="kw">and</span> my_list <span class="op">==</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>] <span class="kw">and</span> <span class="dv">2</span> <span class="kw">in</span> my_list <span class="op">\</span>
         <span class="kw">and</span> <span class="st">&quot;a&quot;</span> <span class="kw">not</span> <span class="kw">in</span> my_variable <span class="kw">and</span> <span class="kw">not</span> []:
     <span class="bu">print</span>(<span class="st">&quot;This is true?!?&quot;</span>) </code></pre></div>
-</section><section id="loop" class="slide level2">
-<h2>Loop</h2>
+</section><section id="iteration" class="slide level2">
+<h2>Iteration</h2>
 <p>Python has two loops: <code>while expression</code>, which can take any expression an <code>if</code> can.<br />
 The second is <code>for variable(s) in iterable</code>.</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">for</span> i <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>):
@@ -211,6 +211,14 @@ Python does this quite well (compared to JavaScript), and also allows you to spe
 </section><section id="types-ii" class="slide level2">
 <h2>Types II</h2>
 <p>Basic/built-in types are: &quot;str&quot;, &quot;float&quot;, &quot;boolean&quot;, &quot;int&quot;, &quot;list&quot;, &quot;tuple&quot;, &quot;dict&quot;, also &quot;builtin_function_or_method&quot;, &quot;function&quot;, &quot;complex&quot; and &quot;type&quot;.</p>
+</section></section>
+<section><section id="lets-write" class="titleslide slide level1"><h1>Let's Write</h1></section><section id="lets-write-something" class="slide level2">
+<h2>Let's write something</h2>
+<p>Look again at <code>example1.py</code>. Make changes to it: - Can you change the colours? - Can you change the speed the bullets fly? - Can you change the number of bullets on the screen?</p>
+</section></section>
+<section><section id="see-you-next-week" class="titleslide slide level1"><h1>See you next week!</h1></section><section id="see-you-next-week-1" class="slide level2">
+<h2>See you next week!</h2>
+<p>See you next week!</p>
 </section></section>
     </div>
   </div>
