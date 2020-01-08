@@ -150,7 +150,7 @@ class ExampleGameTwo:
         self.frames_since_last_bullet += 1
         # FRAMES_PER_SECOND / NEW_BULLETS_PER_SECOND is the calculation of
         # frames between bullet spawns, given these constants, if the number
-        if self.frames_since_last_bullet == FRAMES_BETWEEN_BULLET_SPAWN:
+        if self.frames_since_last_bullet >= FRAMES_BETWEEN_BULLET_SPAWN:
             # If the number of frames since last bullet is the number of frames
             # between each bullet spawn:
             # Reset the counter,

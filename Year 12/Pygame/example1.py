@@ -25,7 +25,7 @@ pygame.display.set_caption(CAPTION)
 
 # Initialise the game
 FRAMES_PER_SECOND = 30
-FRAMES_BETWEEN_BULLET_SPAWN = FRAMES_PER_SECOND / 5  # 5 bullets per second
+FRAMES_BETWEEN_BULLET_SPAWN = FRAMES_PER_SECOND / 4  # 4 bullets per second
 BULLET_SPEED = int(SIZE[0] / (FRAMES_PER_SECOND * 10))  # 10 seconds to cross
 PLAYER_RADIUS = 20
 BULLET_RADIUS = 10
@@ -104,7 +104,7 @@ while running:
     frames_since_last_bullet += 1
     # FRAMES_PER_SECOND / NEW_BULLETS_PER_SECOND is the calculation of frames
     # between bullet spawns, given these constants, if the number
-    if frames_since_last_bullet == FRAMES_BETWEEN_BULLET_SPAWN:
+    if frames_since_last_bullet >= FRAMES_BETWEEN_BULLET_SPAWN:
         # If the number of frames since last bullet is the number of frames
         # between each bullet spawn:
         # Reset the counter,
