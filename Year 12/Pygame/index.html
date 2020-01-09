@@ -73,7 +73,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2>Where's the mistake?</h2>
 <p>Find the syntax errors</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">item_costs <span class="op">=</span> [<span class="fl">2.5</span>, <span class="fl">3.75</span>, <span class="fl">1.99</span>, <span class="fl">5.00</span>]  <span class="co"># £</span>
-item_quantities <span class="op">=</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)
+item_quantities <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]
 total_cost <span class="op">=</span> <span class="dv">0</span>  <span class="co"># £</span>
 credit_limit <span class="op">=</span> <span class="dv">100</span>  <span class="co"># £</span>
 <span class="cf">if</span> <span class="kw">not</span> <span class="bu">len</span>(item_costs) <span class="op">==</span> <span class="bu">len</span>(item_quantities):
@@ -113,10 +113,147 @@ credit_limit <span class="op">=</span> <span class="dv">100</span>  <span class=
 <section><section id="what-we-aim-to-cover" class="titleslide slide level1"><h1>What we aim to cover</h1></section><section id="what-we-aim-to-cover-1" class="slide level2">
 <h2>What we aim to cover</h2>
 <ul>
+<li>Cover some Python basics ready for object oriented programming</li>
 <li>First taste of pygame</li>
 <li>A quick look at an example game in pygame</li>
-<li>Cover some Python basics ready for OO</li>
+<li>This slide deck will likely take more than one workshop</li>
 </ul>
+</section><section id="you-will-need" class="slide level2">
+<h2>You will need</h2>
+<ul>
+<li>...A broswer open on a search engine</li>
+<li>...IDLE open (try <code>import pygame</code> now)</li>
+<li>...to be willing to ask questions</li>
+</ul>
+</section></section>
+<section><section id="lets-talk-python" class="titleslide slide level1"><h1>Let's Talk Python</h1></section><section id="lets-talk-python-1" class="slide level2">
+<h2>Let's Talk Python</h2>
+<p>We need to ensure we are all working on the same page. Python is a fantastic language because you can have a working piece of code in seconds, but it has enough features to be incredibly powerful and fast. As a result, there are many many many ways to do the same thing, and always something new to learn.</p>
+</section><section id="variables-constants-and-functions" class="slide level2">
+<h2>Variables, Constants and Functions</h2>
+<p>Python requires you to set a variable or constant before it is used. In Python it is common to use <code>ALL_UPPER_CASE_WITH_UNDERSCORES</code> for constants, and <code>all_lower_case_with_underscores</code> for variables and functions, although there is always debate.</p>
+</section><section id="lists" class="slide level2">
+<h2>Lists</h2>
+<p>Lists are defined using</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_list <span class="op">=</span> [<span class="st">&quot;hello&quot;</span>, <span class="st">&quot;world&quot;</span>]
+my_other_list <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]
+my_empty_list <span class="op">=</span> <span class="bu">list</span>()
+my_other_empty_list <span class="op">=</span> []
+both_lists <span class="op">=</span> my_list <span class="op">+</span> my_other_list
+both_lists.append(<span class="va">False</span>)</code></pre></div>
+<p>What is the value of <code>both_lists</code>?<br />
+It is <em>convention</em> to only store one type in lists, but Python <strong>really</strong> doesn't care.</p>
+</section><section id="tuples" class="slide level2">
+<h2>Tuples</h2>
+<p>Tuples are defined using</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_tuple <span class="op">=</span> (<span class="st">&quot;hello&quot;</span>, <span class="dv">5</span>, <span class="va">False</span>)
+my_empty_tuple <span class="op">=</span> <span class="bu">tuple</span>()
+my_other_empty_tuple <span class="op">=</span> ()</code></pre></div>
+<p>What is the value of <code>my_tuple[1]</code>? With tuples you cannot add or remove from them once defined, it is useful to store a fixed collection of things (such as 2D coordinates).</p>
+</section><section id="dicts" class="slide level2">
+<h2>Dicts</h2>
+<p>Dicts are defined using</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_tuple <span class="op">=</span> {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;James&quot;</span>, <span class="st">&quot;age&quot;</span>: <span class="dv">12</span>, <span class="va">True</span>: <span class="va">False</span>}
+my_empty_tuple <span class="op">=</span> <span class="bu">dict</span>()
+my_other_empty_tuple <span class="op">=</span> {}
+my_tuple[<span class="st">&quot;favourite_food&quot;</span>] <span class="op">=</span> <span class="st">&quot;Apples&quot;</span></code></pre></div>
+<p>Dicts, or dictionaries, map a key to a value, and do not store any sort of order. Keys <strong>must</strong> be unique, and by convention, keys <em>should</em> of one type, strings, (and in other languages, so should values) but again, Python <strong>really</strong> doesn't care.</p>
+</section><section id="accessing-dicts" class="slide level2">
+<h2>Accessing Dicts</h2>
+<p>The value of a dict can be accessed directly two ways</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_tuple <span class="op">=</span> {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;James&quot;</span>, <span class="st">&quot;age&quot;</span>: <span class="dv">12</span>}
+<span class="co"># Method one</span>
+<span class="bu">print</span>(my_tuple[<span class="st">&quot;name&quot;</span>])
+<span class="bu">print</span>(my_tuple[<span class="st">&quot;favourite_food&quot;</span>])
+<span class="co"># Method two</span>
+<span class="bu">print</span>(my_tuple.get(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;some_default_value&quot;</span>))
+<span class="bu">print</span>(my_tuple.get(<span class="st">&quot;favourite_food&quot;</span>, <span class="va">None</span>))</code></pre></div>
+</section><section id="types" class="slide level2">
+<h2>Types</h2>
+<p>Python is &quot;duck-typed&quot;.</p>
+<blockquote>
+<p>If it walks like a duck, and talks like a duck, it is a duck.</p>
+</blockquote>
+<p>... in other words, unless something breaks, let's just guess what type something is.<br />
+Python does this quite well (compared to JavaScript), and also allows you to specify types if you <em>really</em> want to.</p>
+</section><section id="types-ii" class="slide level2">
+<h2>Types II</h2>
+<p>Basic/built-in types are: <code>str</code>, <code>float</code>, <code>boolean</code>, <code>int</code>, <code>list</code>, <code>tuple</code>, <code>dict</code>, also <code>builtin_function_or_method</code>, <code>function</code>, <code>complex</code> and <code>type</code>.</p>
+</section><section id="selection" class="slide level2">
+<h2>Selection</h2>
+<p>Python has one selection: <code>if expression:</code>, which can be followed by <code>elif</code>s and <code>else</code>.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_variable <span class="op">=</span> <span class="st">&quot;duck&quot;</span>
+my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]
+<span class="cf">if</span> <span class="st">&quot;hello&quot;</span> <span class="kw">and</span> <span class="dv">5</span> <span class="kw">and</span> my_variable <span class="kw">is</span> <span class="st">&quot;duck&quot;</span> \
+        <span class="kw">and</span> my_list <span class="op">==</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>] <span class="kw">and</span> <span class="dv">2</span> <span class="kw">in</span> my_list <span class="op">\</span>
+        <span class="kw">and</span> <span class="st">&quot;a&quot;</span> <span class="kw">not</span> <span class="kw">in</span> my_variable <span class="kw">and</span> <span class="kw">not</span> []:
+    <span class="bu">print</span>(<span class="st">&quot;This is true?!?&quot;</span>) </code></pre></div>
+</section><section id="expressions-i" class="slide level2">
+<h2>Expressions I</h2>
+<p>Any object (including of built-in types) evaluate to true or false. The &quot;empty&quot; value of the built-in types are false, all others are true.</p>
+<p>So, expressions can be: a boolean value, a boolean expressions, an object (which therefore can be evaluated to true or false), or a function that returns any of the prior.</p>
+<p>These can all be combined using <code>and</code>, <code>or</code> and <code>not</code>.</p>
+</section><section id="expressions-ii" class="slide level2">
+<h2>Expressions II</h2>
+<p>Individual boolean expressions can use: <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>, <code>in</code>, <code>not in</code>, <code>is</code>, <code>is not</code>.</p>
+<p>Task: what is the difference between <code>==</code> and <code>is</code>?</p>
+</section><section id="is-vs-i" class="slide level2">
+<h2><code>is</code> vs <code>==</code> I</h2>
+<blockquote>
+<p>An <code>is</code> expression evaluates to True if two variables point to the same (identical) object.</p>
+</blockquote>
+<blockquote>
+<p>An <code>==</code> expression evaluates to True if the objects referred to by the variables are equal (have the same contents).</p>
+</blockquote>
+</section><section id="is-vs-ii" class="slide level2">
+<h2><code>is</code> vs <code>==</code> II</h2>
+<p>So, what is the three statements outputted here?</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">list_one <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]
+list_two <span class="op">=</span> list_one
+list_three <span class="op">=</span> <span class="bu">list</span>(list_one)
+<span class="bu">print</span>(list_one <span class="op">==</span> list_two <span class="op">==</span> list_three)
+<span class="bu">print</span>(list_one <span class="kw">is</span> list_two)
+<span class="bu">print</span>(list_one <span class="kw">is</span> list_three)</code></pre></div>
+</section><section id="iteration" class="slide level2">
+<h2>Iteration</h2>
+<p>Python has two loops: <code>while expression</code>, which can take any expression an <code>if</code> can.<br />
+The second is <code>for variable(s) in iterable</code>.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">for</span> i <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>):
+    <span class="bu">print</span>(i)
+<span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):
+    <span class="bu">print</span>(j)
+<span class="cf">for</span> k <span class="kw">in</span> <span class="st">&quot;london&quot;</span>:
+    <span class="bu">print</span>(k)
+<span class="cf">for</span> index, value <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="st">&quot;i&quot;</span>, <span class="st">&quot;love&quot;</span>, <span class="st">&quot;pygame&quot;</span>]):
+    <span class="bu">print</span>(index, <span class="st">&quot;--&gt;&quot;</span>, value)
+positions <span class="op">=</span> [(<span class="dv">0</span>, <span class="dv">1</span>), (<span class="dv">5</span>, <span class="dv">2</span>), (<span class="dv">8</span>, <span class="dv">1</span>)]
+<span class="cf">for</span> x, y <span class="kw">in</span> positions:
+    <span class="bu">print</span>(x, y)</code></pre></div>
+</section><section id="iterables" class="slide level2">
+<h2>Iterables</h2>
+<ul>
+<li>strings, lists, tuples,</li>
+<li>dicts (which iterates over the keys, somewhat randomly (why?)),</li>
+<li>dict<code>.values()</code> (which iterates over the values),</li>
+<li>dict<code>.items()</code> (which iterates over (key, value) pairs),</li>
+</ul>
+</section><section id="iterables-ii" class="slide level2">
+<h2>Iterables II</h2>
+<ul>
+<li><code>range([start], end, [step])</code> (which iterates over a list of numbers),</li>
+<li><code>enumerate(iterable)</code> (which iterates over (index, value) pairs, see starter),</li>
+<li>A function that <code>yield</code>s *</li>
+<li>An object with <code>next()</code> and <code>iter()</code> methods *</li>
+</ul>
+</section><section id="object-oriented-programming" class="slide level2">
+<h2>Object Oriented Programming</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Animal:
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, number_of_legs):
+        <span class="va">self</span>.name <span class="op">=</span> name
+        <span class="va">self</span>.number_of_legs <span class="op">=</span> number_of_legs
+
+    <span class="kw">def</span> greeting(<span class="va">self</span>):
+        <span class="cf">return</span> <span class="ss">f&quot;Hello, </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss">&quot;</span></code></pre></div>
 </section></section>
 <section><section id="a-pygame-game" class="titleslide slide level1"><h1>A PyGame Game</h1></section><section id="a-pygame-game-1" class="slide level2">
 <h2>A PyGame Game</h2>
@@ -151,74 +288,24 @@ Compare the first file (<code>example1.py</code>) and the third file (<code>exam
 Which do you prefer? Which is easier to read? Which would you rather have to fix?<br />
 Which has the most repetition?</p>
 </section></section>
-<section><section id="lets-talk-python" class="titleslide slide level1"><h1>Let's Talk Python</h1></section><section id="lets-talk-python-1" class="slide level2">
-<h2>Let's Talk Python</h2>
-<p>We need to ensure we are all working on the same page. Python is a fantastic language because you can have a working piece of code in seconds, but it has enough features to be incredibly powerful and fast. As a result, there are many many many ways to do the same thing, and always something new to learn.</p>
-</section><section id="variables-constants-and-functions" class="slide level2">
-<h2>Variables, Constants and Functions</h2>
-<p>Python requires you to set a variable or constant before it is used. In Python it is common to use <code>ALL_UPPER_CASE_WITH_UNDERSCORES</code> for constants, and <code>all_lower_case_with_underscores</code> for variables and functions, although there is always debate.</p>
-</section><section id="lists" class="slide level2">
-<h2>Lists</h2>
-<p>Lists are defined using</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_list <span class="op">=</span> [<span class="st">&quot;hello&quot;</span>, <span class="st">&quot;world&quot;</span>]
-my_other_list <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]
-my_empty_list <span class="op">=</span> <span class="bu">list</span>()
-my_other_empty_list <span class="op">=</span> []
-both_lists <span class="op">=</span> my_list <span class="op">+</span> my_other_list
-both_lists.append(<span class="va">False</span>)</code></pre></div>
-<p>What is the value of <code>both_lists</code>?<br />
-It is <em>convention</em> to only store one type in lists, but Python <strong>really</strong> doesn't care.</p>
-</section><section id="tuples-and-dicts" class="slide level2">
-<h2>Tuples and Dicts</h2>
-<p>Tuples are defined using</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_tuple <span class="op">=</span> (<span class="st">&quot;hello&quot;</span>, <span class="dv">5</span>, <span class="va">False</span>)
-my_empty_tuple <span class="op">=</span> <span class="bu">tuple</span>()
-my_other_empty_tuple <span class="op">=</span> ()</code></pre></div>
-<p>With tuples you cannot add or remove from them once defined, it is useful to store a fixed collection of things (such as 2D coordinates).<br />
-I'm not going to use dicts here, but they can be useful.</p>
-</section><section id="selection" class="slide level2">
-<h2>Selection</h2>
-<p>Python has one selection: <code>if expression:</code>, which can be followed by <code>elif</code>s and <code>else</code>. Anything that can evaluate to True or False can be the <code>expression</code>, this includes functions with boolean return types, or...</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_variable <span class="op">=</span> <span class="st">&quot;duck&quot;</span>
-my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]
-<span class="cf">if</span> <span class="st">&quot;hello&quot;</span> <span class="kw">and</span> <span class="dv">5</span> <span class="kw">and</span> my_variable <span class="kw">is</span> <span class="st">&quot;duck&quot;</span> \
-        <span class="kw">and</span> my_list <span class="op">==</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>] <span class="kw">and</span> <span class="dv">2</span> <span class="kw">in</span> my_list <span class="op">\</span>
-        <span class="kw">and</span> <span class="st">&quot;a&quot;</span> <span class="kw">not</span> <span class="kw">in</span> my_variable <span class="kw">and</span> <span class="kw">not</span> []:
-    <span class="bu">print</span>(<span class="st">&quot;This is true?!?&quot;</span>) </code></pre></div>
-</section><section id="iteration" class="slide level2">
-<h2>Iteration</h2>
-<p>Python has two loops: <code>while expression</code>, which can take any expression an <code>if</code> can.<br />
-The second is <code>for variable(s) in iterable</code>.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">for</span> i <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>):
-    <span class="bu">print</span>(i)
-<span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):
-    <span class="bu">print</span>(j)
-<span class="cf">for</span> k <span class="kw">in</span> <span class="st">&quot;london&quot;</span>:
-    <span class="bu">print</span>(k)
-<span class="cf">for</span> index, value <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="st">&quot;i&quot;</span>, <span class="st">&quot;love&quot;</span>, <span class="st">&quot;pygame&quot;</span>]):
-    <span class="bu">print</span>(index, <span class="st">&quot;--&gt;&quot;</span>, value)
-positions <span class="op">=</span> [(<span class="dv">0</span>, <span class="dv">1</span>), (<span class="dv">5</span>, <span class="dv">2</span>), (<span class="dv">8</span>, <span class="dv">1</span>)]
-<span class="cf">for</span> x, y <span class="kw">in</span> positions:
-    <span class="bu">print</span>(x, y)</code></pre></div>
-</section><section id="types" class="slide level2">
-<h2>Types</h2>
-<p>Python is &quot;duck-typed&quot;.</p>
-<blockquote>
-<p>If it walks like a duck, and talks like a duck, it is a duck.</p>
-</blockquote>
-<p>... in other words, unless something breaks, let's just guess what type something is.<br />
-Python does this quite well (compared to JavaScript), and also allows you to specify types if you <em>really</em> want to.</p>
-</section><section id="types-ii" class="slide level2">
-<h2>Types II</h2>
-<p>Basic/built-in types are: &quot;str&quot;, &quot;float&quot;, &quot;boolean&quot;, &quot;int&quot;, &quot;list&quot;, &quot;tuple&quot;, &quot;dict&quot;, also &quot;builtin_function_or_method&quot;, &quot;function&quot;, &quot;complex&quot; and &quot;type&quot;.</p>
-</section></section>
 <section><section id="lets-write" class="titleslide slide level1"><h1>Let's Write</h1></section><section id="lets-write-something" class="slide level2">
 <h2>Let's write something</h2>
-<p>Look again at <code>example1.py</code>. Make changes to it: - Can you change the colours? - Can you change the speed the bullets fly? - Can you change the number of bullets on the screen?</p>
+<p>Look again at <code>example1.py</code>. Make changes to it:<br />
+- Can you change the colours?<br />
+- Can you change the speed the bullets fly?<br />
+- Can you change the number of bullets on the screen?</p>
+</section><section id="blank-slate" class="slide level2">
+<h2>Blank Slate</h2>
+<p>Look at how <em>example2.py</em> works, and see if you can make a well documented (commented) &quot;blank slate&quot; program, similar to <em>example0.py</em> but object oriented.<br />
+It should display just a blank screen (with a constant for background colour).</p>
 </section></section>
-<section><section id="see-you-next-week" class="titleslide slide level1"><h1>See you next week!</h1></section><section id="see-you-next-week-1" class="slide level2">
-<h2>See you next week!</h2>
-<p>See you next week!</p>
+<section><section id="see-you-next-session" class="titleslide slide level1"><h1>See you next session!</h1></section><section id="see-you-in-two-weeks-time" class="slide level2">
+<h2>See you in two weeks time!</h2>
+<p>Next session:<br />
+- Object oriented refresher<br />
+- Inheritance and abstracts<br />
+- The event loop<br />
+- More OO pygame</p>
 </section></section>
     </div>
   </div>
