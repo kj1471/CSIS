@@ -9,7 +9,7 @@ import pygame
 
 # Set the constants for pygame
 SIZE = (800, 600)
-CAPTION = "Pygame Example Zero"
+CAPTION = "Workshop1 Example Zero"
 BACKGROUND_COLOUR = (64, 0, 64)
 
 # Initiate pygame and a screen to display to, using the constants
