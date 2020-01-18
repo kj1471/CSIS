@@ -8,12 +8,13 @@ import math
 import sys
 from datetime import datetime
 from random import randrange
+from typing import List, Any
 
 import pygame
 
 # Set the constants for pygame
 SIZE = WIDTH, HEIGHT = (800, 600)
-CAPTION = "Workshop1 Example Two"
+CAPTION = "Workshop1 Task2"
 BACKGROUND_COLOUR = (64, 0, 64)
 
 # Initialise the game
@@ -26,8 +27,31 @@ PLAYER_COLOUR = (255, 255, 255)
 BULLET_COLOUR = (255, 0, 0)
 
 
+# Define a general "thing"
+class Thing:
+    def on_event(self, event):
+        pass
+
+    def update(self):
+        pass
+
+    def draw(self, surface):
+        pass
+
+
+# Define a circle
+class Circle(Thing):
+    def __init__(self, starting_x, starting_y, radius, colour):
+        self.position = (starting_x, starting_y)
+        self.radius = radius
+        self.colour = colour
+
+    def draw(self, surface):
+        pygame.draw.circle(surface, self.colour, self.position, self.radius)
+
+
 # Define a Bullet object
-class Bullet:
+class Bullet(Circle):
     """
     A Bullet is an object in the game, which can travel in one of four
     directions, starts from the end of the screen and continues forever.
@@ -43,20 +67,21 @@ class Bullet:
         should travel in.
         """
         # Define the starting position and the amount to move given the
-        # direction. This isn't the most efficient way to write this, but it
-        # is readable.
+        # direction.
         if direction == Bullet.RIGHT:
-            self.position = (0, randrange(HEIGHT))
+            starting_x, starting_y = (0, randrange(HEIGHT))
             self.movement = (BULLET_SPEED, 0)
         elif direction == Bullet.DOWN:
-            self.position = (randrange(WIDTH), 0)
+            starting_x, starting_y = (randrange(WIDTH), 0)
             self.movement = (0, BULLET_SPEED)
         elif direction == Bullet.LEFT:
-            self.position = (WIDTH, randrange(HEIGHT))
+            starting_x, starting_y = (WIDTH, randrange(HEIGHT))
             self.movement = (-BULLET_SPEED, 0)
-        elif direction == Bullet.UP:
-            self.position = (randrange(WIDTH), HEIGHT)
+        else:
+            starting_x, starting_y = (randrange(WIDTH), HEIGHT)
             self.movement = (0, -BULLET_SPEED)
+
+        super().__init__(starting_x, starting_y, BULLET_RADIUS, BULLET_COLOUR)
 
     def update(self):
         """
@@ -82,12 +107,18 @@ class Bullet:
             math.sqrt(abs(x - other_x) ** 2 + abs(y - other_y) ** 2) < \
             PLAYER_RADIUS + BULLET_RADIUS
 
-    def draw(self, surface):
-        """
-        Draw the bullet to the surface.
-        @param surface: A surface to draw the bullet to.
-        """
-        pygame.draw.circle(surface, BULLET_COLOUR, self.position, BULLET_RADIUS)
+
+class Player(Circle):
+    def __init__(self):
+        super().__init__(WIDTH / 2, HEIGHT / 2,
+                         PLAYER_RADIUS, PLAYER_COLOUR)
+
+    def on_event(self, event):
+        if event.type == pygame.MOUSEMOTION:
+            # If the mouse has moved at all...
+            # (in this case, we now know this `event` will have a `.pos`
+            # attribute), saying here the mouse is now
+            self.position = event.pos  # Store the mouse position
 
 
 # Define the game
@@ -97,18 +128,21 @@ class ExampleGameTwo:
     """
 
     def __init__(self):
+        # Create a list of all children. As long as these are all "Thing"s
+        # then we can call on_event, update and draw regardless of inheritance.
+        self.children = []
+
         # Initiate pygame and a screen to display to, using the constants
         pygame.init()
         pygame.font.init()  # Line isn't needed unless you write text to screen.
         pygame.display.set_caption(CAPTION)
 
-        # Initialise the game variables, these variables belong to the game,
-        # so use `self.` to tell Python these belong to the object/the game,
-        # not just this one function.
-        self.player_position = (0, 0)  # Store the player/mouse position
-        self.bullets = []  # Store a list of Bullets
         self.frames_since_last_bullet = 0  # Count the number of frames between
         # bullet spawns
+        self.player = Player()
+        self.children.append(self.player)  # Add player to children
+        self.bullets = []
+
         self.start_time = datetime.now()
 
         # Store some pygame variables to the game too
@@ -123,11 +157,8 @@ class ExampleGameTwo:
         MOUSEMOTION only.
         @param event: Any pygame event.
         """
-        if event.type == pygame.MOUSEMOTION:
-            # If the mouse has moved at all...
-            # (in this case, we now know this `event` will have a `.pos`
-            # attribute, saying here the mouse is now
-            self.player_position = event.pos  # Store the mouse position
+        for child in self.children:
+            child.on_event(event)
 
     def update(self):
         """
@@ -136,10 +167,11 @@ class ExampleGameTwo:
         This function moves all bullets, checks for collisions (end game),
         and adds new bullets.
         """
-        # Update each bullet, moving it and checking if it collided
+        for child in self.children:
+            child.update()
+
         for bullet in self.bullets:
-            bullet.update()
-            if bullet.collision_test(self.player_position):
+            if bullet.collision_test(self.player.position):
                 self.running = False
                 print("Game over.")
                 time = (datetime.now() - self.start_time).total_seconds()
@@ -157,19 +189,17 @@ class ExampleGameTwo:
             self.frames_since_last_bullet = 0
             # and add a new bullet to each direction
             for direction in Bullet.DIRECTIONS:
-                self.bullets.append(Bullet(direction=direction))
+                new_bullet = Bullet(direction=direction)
+                self.bullets.append(new_bullet)
+                self.children.append(new_bullet)
 
     def draw(self, surface: pygame.Surface):
         """
         Draw all this game to the surface.
         @param surface: A surface to draw the game to.
         """
-        # For each bullet, draw it to the surface.
-        for bullet in self.bullets:
-            bullet.draw(surface)
-        # Then draw the players position.
-        pygame.draw.circle(surface, PLAYER_COLOUR, self.player_position,
-                           PLAYER_RADIUS)
+        for child in self.children:
+            child.draw(surface)
 
     def run_game(self):
         """

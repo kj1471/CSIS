@@ -13,7 +13,7 @@ import pygame
 
 # Set the constants for pygame
 SIZE = WIDTH, HEIGHT = (800, 600)
-CAPTION = "Workshop1 Example One"
+CAPTION = "Workshop0 Example One"
 BACKGROUND_COLOUR = (64, 0, 64)
 
 # Initiate pygame and a screen to display to, using the constants

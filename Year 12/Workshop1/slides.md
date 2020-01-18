@@ -1,283 +1,124 @@
 ---
-title: Introduction to Pygame
+title: Pygame Workshop Two
 author: Kieran Vickers
 ---
 
 # Starter
-## Where's the mistake?
-Find the syntax errors
-```python
-item_costs = [2.5, 3.75, 1.99, 5.00]  # £
-item_quantities = [2, 4, 5, 6]
-total_cost = 0  # £
-credit_limit = 100  # £
-if not len(item_costs) == len(item_quantities):
-    raise AssertionError("Invalid Inputs")
-for index, item_cost in enumerate(item_costs):
-    quantity = item_quantities(index)
-    subtotal = item_costs * quantity
-    total_cost = item_cost
-if total_cost =< credit_limit:
-    print("Sale approved, £" + str(total_cost))
-else:
-    print("You cannot afford this.")
-```
+## Rules
+You have (around) 5 minutes to complete three challenges (on the next slide). 
+You must use Python. You must type **as little** as you can, but you can copy-paste
+as much as you wish. You may add comments.\
+Get a browser and IDLE open...
 
-## Mistakes
-There are two syntax errors:
-- `item_quantities(index)` is a syntax error, to take an item from a list use
- `[` & `]` --> `item_quantities[index]`
-- `total_cost =< credit_limit` is a syntax error --> `total_cost <= credit_limit`
-
-## Where's the mistake?
-Find the logical error
-```python
-item_costs = [2.5, 3.75, 1.99, 5.00]  # £
-item_quantities = (2, 4, 5, 6)
-total_cost = 0  # £
-credit_limit = 100  # £
-if not len(item_costs) == len(item_quantities):
-    raise AssertionError("Invalid Inputs")
-for index, item_cost in enumerate(item_costs):
-    quantity = item_quantities[index]
-    subtotal = item_costs * quantity
-    total_cost = item_cost
-if total_cost <= credit_limit:
-    print("Sale approved, £" + str(total_cost))
-else:
-    print("You cannot afford this.")
-```
-
-## Mistakes
-There is one logic error:
-- `total_cost = item_cost` is a logical error - `total_cost += item_cost`
+## Challenges
+Typing as little code as you can, but using copy-paste as much as you need:
+- Create a function that prints the first n numbers in the Fibonacci sequence
+- Create a function that plays FizzBuzz given a number (3/5 version)
+- Create a file that plays space invadors using PyGame
 
 # What we aim to cover
 
 ## What we aim to cover
-- Cover some Python basics ready for object oriented programming
-- First taste of pygame
-- A quick look at an example game in pygame
-- This slide deck will likely take more than one workshop
+- Introduce OO in Python
+- Cover inheritance in Python
+- Introduce OO concepts to PyGame
 
 ## You will need
-- ...A broswer open on a search engine
 - ...IDLE open (try `import pygame` now)
+- ...A broswer open on a search engine
+- ...A browser open on the **Pygame Docs**
 - ...to be willing to ask questions
 
-# Let's Talk Python
-## Let's Talk Python
-We need to ensure we are all working on the same page. Python is a fantastic language because you
- can have a working piece of code in seconds, but it has enough features to be incredibly
- powerful and fast. As a result, there are many many many ways to do the same thing, and always
- something new to learn.
- 
-## Variables, Constants and Functions
-Python requires you to set a variable or constant before it is used. In Python it is common to
-use `ALL_UPPER_CASE_WITH_UNDERSCORES` for constants, and `all_lower_case_with_underscores` for
-variables and functions, although there is always debate.
+# Main
+## Objects objects objects
+Have a look at task0.py. Can you spot the redundancy? There are a lot of class
+attributes that are repeated, which we could instead inherit.
 
-## Lists
-Lists are defined using 
+Can you suggest a class hierarchy (with attribute list) for these classes?
+
+## Discuss
+Do we agree the hierarchy?
+
+## Classes
+Classes in python are defined using the `class` keyword. In Object-Oriented 
+programming we aim to collect the data representing objects of a single type into
+a class, along with the functions that act on this data.
+
+## Classes
 ```python
-my_list = ["hello", "world"]
-my_other_list = [0, 1, 2]
-my_empty_list = list()
-my_other_empty_list = []
-both_lists = my_list + my_other_list
-both_lists.append(False)
-```   
-What is the value of `both_lists`?  
-It is *convention* to only store one type in lists, but Python **really** doesn't care.
+class Dog:
+    def __init__(self, name, date_of_birth):
+        self.name = name
+        self.date_of_birth = date_of_birth
 
-## Tuples
-Tuples are defined using 
-```python
-my_tuple = ("hello", 5, False)
-my_empty_tuple = tuple()
-my_other_empty_tuple = ()
-```   
-What is the value of `my_tuple[1]`?
-With tuples you cannot add or remove from them once defined, it is useful to store a fixed
- collection of things (such as 2D coordinates).  
-
-## Dicts
-Dicts are defined using 
-```python
-my_tuple = {"name": "James", "age": 12, True: False}
-my_empty_tuple = dict()
-my_other_empty_tuple = {}
-my_tuple["favourite_food"] = "Apples"
-```   
-Dicts, or dictionaries, map a key to a value, and do not store any sort of order. 
-Keys **must** be unique, and by convention, keys *should* of one type, strings, (and in other
- languages, so should values) but again, Python **really** doesn't care.  
-
-## Accessing Dicts
-The value of a dict can be accessed directly two ways
-```python
-my_tuple = {"name": "James", "age": 12}
-# Method one
-print(my_tuple["name"])
-print(my_tuple["favourite_food"])
-# Method two
-print(my_tuple.get("name", "some_default_value"))
-print(my_tuple.get("favourite_food", None))
-```
- 
-## Types
-Python is "duck-typed".
-
-> If it walks like a duck, and talks like a duck, it is a duck.
-
-... in other words, unless something breaks, let's just guess what type something is.  
-Python does this quite well (compared to JavaScript), and also allows you to specify types if you
- *really* want to.  
- 
-## Types II
-Basic/built-in types are: `str`, `float`, `boolean`, `int`, `list`, `tuple`, `dict`, also
- `builtin_function_or_method`, `function`, `complex` and `type`.
-
-## Selection
-Python has one selection: `if expression:`, which can be followed by `elif`s and `else`. 
-
-```python
-my_variable = "duck"
-my_list = [1, 2, 3]
-if "hello" and 5 and my_variable is "duck" \
-        and my_list == [1, 2, 3] and 2 in my_list \
-        and "a" not in my_variable and not []:
-    print("This is true?!?") 
+    def greet(self):
+        return f"Hello, {self.name}, who's a good dog?"
 ```
 
-## Expressions I
-Any object (including of built-in types) evaluate to true or false. The
- "empty" value of the built-in types are false, all others are true.  
- 
-So, expressions can be: a boolean value, a boolean expressions, an object (which therefore can
- be evaluated to true or false), or a function that returns any of the prior. 
- 
-These can all be combined using `and`, `or` and `not`.
+## Inheritance
+Given a hierarchical structure of classes, we can inherit attributes and 
+functionality from a parent class, then add more attributes and functions.
 
-## Expressions II 
-Individual boolean expressions can use: 
-`<`, `>`, `<=`, `>=`, `==`, `!=`, `in`, `not in`, `is`, `is not`.  
+In Python, we can call `super()` to invoke the parent or superclasses method. For
+example, on the next slide see how we use `super().__init__()`. It is considered a
+must to call this in any class that inherits and overrides `__init__`.
 
-Task: what is the difference between `==` and `is`?  
-
-## `is` vs `==` I
-
-> An `is` expression evaluates to True if two variables point to the same (identical) object.
-
-> An `==` expression evaluates to True if the objects referred to by the variables are equal 
-> (have the same contents).
-
-## `is` vs `==` II
-So, what is the three statements outputted here?  
-```python
-list_one = [1, 2, 3]
-list_two = list_one
-list_three = list(list_one)
-print(list_one == list_two == list_three)
-print(list_one is list_two)
-print(list_one is list_three)
-```
-
-## Iteration
-Python has two loops: `while expression`, which can take any expression an `if` can.  
-The second is `for variable(s) in iterable`.
-```python
-for i in (1, 3, 5, 7):
-    print(i)
-for j in range(10):
-    print(j)
-for k in "london":
-    print(k)
-for index, value in enumerate(["i", "love", "pygame"]):
-    print(index, "-->", value)
-positions = [(0, 1), (5, 2), (8, 1)]
-for x, y in positions:
-    print(x, y)
-```
-
-## Iterables
-- strings, lists, tuples,
-- dicts (which iterates over the keys, somewhat randomly (why?)),
-- dict`.values()` (which iterates over the values),
-- dict`.items()` (which iterates over (key, value) pairs), 
-
-## Iterables II
-- `range([start], end, [step])` (which iterates over a list of numbers),
-- `enumerate(iterable)` (which iterates over (index, value) pairs, see starter),
-- A function that `yield`s *
-- An object with `next()` and `iter()` methods *
-
-## Object Oriented Programming
+## Inheritance
 ```python
 class Animal:
-    def __init__(self, name, number_of_legs):
+    def __init__(self, name):
         self.name = name
-        self.number_of_legs = number_of_legs
+    def greet(self):
+        return f"Hello, {self.name}."
 
-    def greeting(self):
-        return f"Hello, {self.name}"
+class Human(Animal):
+    def __init__(self, name, languages_spoken):
+        super().__init__(name)
+        self.languages_spoken = languages_spoken
+    def speaks(self):
+        return ", ".join(self.languages_spoken)
 ```
- 
- 
 
-# A PyGame Game
+## Inheritance Task
+Take *task0.py* and rewrite it so that you only define each attribute once.
 
-## A PyGame Game
-If you go to  
-`tinyurl.com/kj-yr12-ex1`  
-and save this on your own system, you should be able to run it.
+The code at the bottom should still run and give the same output after your changes.
 
-## Run it
-Run the pygame as you would any other Python file.  
-Don't look at the code yet, but think how it might work?
+## Overriding Methods
+When we inherit from a parent/super class, objects of the child class will have 
+all the attributes and methods of its parents, exactly the same.
 
-## A REALLY SIMPLE PyGame "Game"
-If you go to  
-`tinyurl.com/kj-yr12-ex0`  
-and save this on your own system, you should be able to run it.
+## Overriding Methods
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+    def greet(self):
+        return f"Hello, {self.name}."
 
-## Compare the games
-The second example uses 18 lines of code, what does it do?  
-The first example uses 71 lines of code, how much more does it do?
+class Human(Animal):
+    pass
+```
 
-## An Object-Oriented Game
-One more for you to download, go to  
-`https://tinyurl.com/kj-yr12-ex2`  
-and save this on your own system, you should be able to run it.
+## Overriding Methods
+When we inherit from a parent/super class, objects of the child class will have 
+all the attributes and methods of its parents, exactly the same.
 
-## Compare the games
-The third example uses 91 lines of code, the first example uses 71 lines of code, what is the
- difference between running them?
- 
-## Look at the code
-They're the same?!  
-Compare the first file (`example1.py`) and the third file (`example2.py`).  
-Which do you prefer? Which is easier to read? Which would you rather have to fix?  
-Which has the most repetition?
- 
- 
+You can then override the functions of the parent class in the child class. The
+most common function to override is the `__init__` function, but you can override
+any function.
 
-# Let's Write
-##Let's write something
-Look again at `example1.py`. Make changes to it:  
-- Can you change the colours?  
-- Can you change the speed the bullets fly?  
-- Can you change the number of bullets on the screen?  
+## Overriding Task
+Look at *task1.py*. It is an example answer to the previous task, with functions 
+added to access the attributes. Replace the print statements with different print 
+statements that use these functions. Can you write another function in a child
+class that overrides a parent class's function?
 
-##Blank Slate
-Look at how *example2.py* works, and see if you can make a well documented (commented) "blank
- slate" program, similar to *example0.py* but object oriented.  
-It should display just a blank screen (with a constant for background colour).
+
+# Pygame
+## Pygame
+So, object oriented pygame, why is this useful?
 
 # See you next session!
 ## See you in two weeks time!  
-Next session:  
-- Object oriented refresher  
-- Inheritance and abstracts  
-- The event loop  
-- More OO pygame  
+Next session:
