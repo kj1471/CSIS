@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Kieran Vickers">
+  <title>Pygame Workshop Two</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://revealjs.com/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="https://revealjs.com/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://revealjs.com/css/print/pdf.css' : 'https://revealjs.com/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="https://revealjs.com/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Pygame Workshop Two</h1>
+  <p class="author">Kieran Vickers</p>
+</section>
+
+<section><section id="starter" class="titleslide slide level1"><h1>Starter</h1></section><section id="rules" class="slide level2">
+<h2>Rules</h2>
+<p>You have (around) 5 minutes to complete three challenges (on the next slide). You must use Python. You must type <strong>as little</strong> as you can, but you can copy-paste as much as you wish. You may add comments.<br />
+Get a browser and IDLE open...</p>
+</section><section id="challenges" class="slide level2">
+<h2>Challenges</h2>
+<p>Typing as little code as you can, but using copy-paste as much as you need: - Create a function that prints the first n numbers in the Fibonacci sequence - Create a function that plays FizzBuzz given a number (3/5 version) - Create a file that plays space invadors using PyGame</p>
+</section></section>
+<section><section id="what-we-aim-to-cover" class="titleslide slide level1"><h1>What we aim to cover</h1></section><section id="what-we-aim-to-cover-1" class="slide level2">
+<h2>What we aim to cover</h2>
+<ul>
+<li>Introduce OO in Python</li>
+<li>Cover inheritance in Python</li>
+<li>Introduce OO concepts to PyGame</li>
+</ul>
+</section><section id="you-will-need" class="slide level2">
+<h2>You will need</h2>
+<ul>
+<li>...IDLE open (try <code>import pygame</code> now)</li>
+<li>...A broswer open on a search engine</li>
+<li>...A browser open on the <strong>Pygame Docs</strong></li>
+<li>...to be willing to ask questions</li>
+</ul>
+</section></section>
+<section><section id="main" class="titleslide slide level1"><h1>Main</h1></section><section id="objects-objects-objects" class="slide level2">
+<h2>Objects objects objects</h2>
+<p>Have a look at task0.py. Can you spot the redundancy? There are a lot of class attributes that are repeated, which we could instead inherit.</p>
+<p>Can you suggest a class hierarchy (with attribute list) for these classes?</p>
+</section><section id="discuss" class="slide level2">
+<h2>Discuss</h2>
+<p>Do we agree the hierarchy?</p>
+</section><section id="classes" class="slide level2">
+<h2>Classes</h2>
+<p>Classes in python are defined using the <code>class</code> keyword. In Object-Oriented programming we aim to collect the data representing objects of a single type into a class, along with the functions that act on this data.</p>
+</section><section id="classes-1" class="slide level2">
+<h2>Classes</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Dog:
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, date_of_birth):
+        <span class="va">self</span>.name <span class="op">=</span> name
+        <span class="va">self</span>.date_of_birth <span class="op">=</span> date_of_birth
+
+    <span class="kw">def</span> greet(<span class="va">self</span>):
+        <span class="cf">return</span> <span class="ss">f&quot;Hello, </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss">, who&#39;s a good dog?&quot;</span></code></pre></div>
+</section><section id="inheritance" class="slide level2">
+<h2>Inheritance</h2>
+<p>Given a hierarchical structure of classes, we can inherit attributes and functionality from a parent class, then add more attributes and functions.</p>
+<p>In Python, we can call <code>super()</code> to invoke the parent or superclasses method. For example, on the next slide see how we use <code>super().__init__()</code>. It is considered a must to call this in any class that inherits and overrides <code>__init__</code>.</p>
+</section><section id="inheritance-1" class="slide level2">
+<h2>Inheritance</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Animal:
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):
+        <span class="va">self</span>.name <span class="op">=</span> name
+    <span class="kw">def</span> greet(<span class="va">self</span>):
+        <span class="cf">return</span> <span class="ss">f&quot;Hello, </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss">.&quot;</span>
+
+<span class="kw">class</span> Human(Animal):
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, languages_spoken):
+        <span class="bu">super</span>().<span class="fu">__init__</span>(name)
+        <span class="va">self</span>.languages_spoken <span class="op">=</span> languages_spoken
+    <span class="kw">def</span> speaks(<span class="va">self</span>):
+        <span class="cf">return</span> <span class="st">&quot;, &quot;</span>.join(<span class="va">self</span>.languages_spoken)</code></pre></div>
+</section><section id="inheritance-task" class="slide level2">
+<h2>Inheritance Task</h2>
+<p>Take <em>task0.py</em> and rewrite it so that you only define each attribute once.</p>
+<p>The code at the bottom should still run and give the same output after your changes.</p>
+</section><section id="overriding-methods" class="slide level2">
+<h2>Overriding Methods</h2>
+<p>When we inherit from a parent/super class, objects of the child class will have all the attributes and methods of its parents, exactly the same.</p>
+</section><section id="overriding-methods-1" class="slide level2">
+<h2>Overriding Methods</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Animal:
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):
+        <span class="va">self</span>.name <span class="op">=</span> name
+    <span class="kw">def</span> greet(<span class="va">self</span>):
+        <span class="cf">return</span> <span class="ss">f&quot;Hello, </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss">.&quot;</span>
+
+<span class="kw">class</span> Human(Animal):
+    <span class="cf">pass</span></code></pre></div>
+</section><section id="overriding-methods-2" class="slide level2">
+<h2>Overriding Methods</h2>
+<p>When we inherit from a parent/super class, objects of the child class will have all the attributes and methods of its parents, exactly the same.</p>
+<p>You can then override the functions of the parent class in the child class. The most common function to override is the <code>__init__</code> function, but you can override any function.</p>
+</section><section id="overriding-task" class="slide level2">
+<h2>Overriding Task</h2>
+<p>Look at <em>task1.py</em>. It is an example answer to the previous task, with functions added to access the attributes. Replace the print statements with different print statements that use these functions. Can you write another function in a child class that overrides a parent class's function?</p>
+</section></section>
+<section><section id="pygame" class="titleslide slide level1"><h1>Pygame</h1></section><section id="pygame-1" class="slide level2">
+<h2>Pygame</h2>
+<p>So, object oriented pygame, why is this useful?</p>
+</section><section id="fetch---decode---execute" class="slide level2">
+<h2>Fetch - Decode - Execute</h2>
+<p>Recall the FDE cycle, a three (ish) phase cycle of the CPU.</p>
+<p>Similarly, graphical interfaces use a similar three phase cycle.</p>
+</section><section id="event-handle---update---display" class="slide level2">
+<h2>Event handle - update - display</h2>
+<p>The handle, update, display loop is a common framework used in graphical interfaces. Many GUI toolkits abstract this. In Python's <em>tkinter</em>, you only really have to handle events.</p>
+</section><section id="event-handling" class="slide level2">
+<h2>Event handling</h2>
+<p>In pygame, all events are stored in a queue waiting for the programmer to handle them. Each event is an object, of type Event. It is called <code>pygame.event</code> and we loop over it in a for loop: <code>python for event in pygame.event.get():     # Do something with the event.     pass</code></p>
+</section><section id="events-in-pygame" class="slide level2">
+<h2>Events in Pygame</h2>
+<p>With the pygame docs you have open, can you find different categories of events in pygame?</p>
+<p>What attributes do ALL types of events have, and what attributes do only some have?</p>
+</section><section id="hanlding-events-in-pygame" class="slide level2">
+<h2>Hanlding events in Pygame</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> pygame, pygame.event
+<span class="cf">for</span> event <span class="kw">in</span> pygame.event.get():
+    <span class="cf">if</span> event.<span class="bu">type</span> <span class="op">==</span> pygame.QUIT:
+        should_quit_game <span class="op">=</span> <span class="va">True</span>
+    <span class="cf">elif</span> event.<span class="bu">type</span> <span class="op">==</span> pygame.MOUSEMOTION:
+        mouse_position <span class="op">=</span> event.pos
+    <span class="cf">elif</span> event.<span class="bu">type</span> <span class="op">==</span> pygame.KEYUP:
+        <span class="bu">print</span>(<span class="ss">f&quot;Key pressed is </span><span class="sc">{</span>event<span class="sc">.</span>key<span class="sc">}</span><span class="ss">.&quot;</span>)</code></pre></div>
+</section><section id="updating-in-pygame" class="slide level2">
+<h2>Updating in Pygame</h2>
+<p>The update section of the loop, also called stepping, is sometimes skipped or incorporated into draw. This is when you update the state of the internal representation based on things that aren't events. One example: animation (changing the x coordinate of a sprite every frame).</p>
+</section><section id="drawing-in-pygame" class="slide level2">
+<h2>Drawing in Pygame</h2>
+<p>Have a look at the pygame docs again, this time at draw. What shapes can we draw?</p>
+<p>A <em>Surface</em> object in pygame is a pygame object for representing images, and what you draw to a surface we can then draw to the screen.</p>
+</section><section id="a-worked-example" class="slide level2">
+<h2>A Worked Example</h2>
+<p>Have a look at task2.py. It is the same game we did last week, only this time I've used the inheritance to ensure all drawable <em>Thing</em>s can be looped over.</p>
+<p>This isn't a great example, let's write a better example.</p>
+</section></section>
+<section><section id="myfirstgame" class="titleslide slide level1"><h1>MyFirstGame</h1></section><section id="introduction" class="slide level2">
+<h2>Introduction</h2>
+<p>Over the next few tasks (over this workshop and the next) we are going to slowly build a &quot;game &quot; (twice).</p>
+<p>Please do save this work somewhere you can find it.</p>
+</section><section id="draw" class="slide level2">
+<h2>Draw</h2>
+<p>Have a look at task3.py. It simply displays a gray screen, but has been written in an object oriented way. There are two classes for you to complete: <code>House</code> and <code>Dog</code>. For each, create a <code>.__init__(...)</code> function and override the <code>.draw(surface)</code> method. At the moment, you decide what needs passed into the init function. Use the documentation.</p>
+</section><section id="updateanimation" class="slide level2">
+<h2>Update/animation</h2>
+<p>For the <code>Dog</code> class, override the <code>.update()</code> function to make the dog bob up and down over time . Hint: you don't want to bob entirely every frame.</p>
+</section><section id="event-handling-1" class="slide level2">
+<h2>Event Handling</h2>
+<p>For the <code>Dog</code> again, override the <code>.on_event(event)</code> function to make the dog move left and right when the arrow keys OR the 'A'/'D' keys are pressed. What is the difference between between KEYDOWN and KEYUP?</p>
+</section></section>
+<section><section id="see-you-next-session" class="titleslide slide level1"><h1>See you next session!</h1></section><section id="see-you-in-two-weeks-time" class="slide level2">
+<h2>See you in two weeks time!</h2>
+<p>Next session: - Hierarchical object structures, parent/child relationships - Inter-object interaction - Other PyGame features</p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="https://revealjs.com/lib/js/head.min.js"></script>
+  <script src="https://revealjs.com/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'https://revealjs.com/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://revealjs.com/plugin/zoom-js/zoom.js', async: true },
+              { src: 'https://revealjs.com/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

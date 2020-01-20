@@ -119,6 +119,84 @@ class that overrides a parent class's function?
 ## Pygame
 So, object oriented pygame, why is this useful?
 
+## Fetch - Decode - Execute
+Recall the FDE cycle, a three (ish) phase cycle of the CPU.
+
+Similarly, graphical interfaces use a similar three phase cycle.
+
+## Event handle - update - display
+The handle, update, display loop is a common framework used in graphical interfaces. Many GUI
+toolkits abstract this. In Python's *tkinter*, you only really have to handle events.
+
+## Event handling
+In pygame, all events are stored in a queue waiting for the programmer to handle them. 
+Each event is an object, of type Event.
+It is called `pygame.event` and we loop over it in a for loop:
+ ```python
+for event in pygame.event.get():
+    # Do something with the event.
+    pass
+``` 
+
+## Events in Pygame
+With the pygame docs you have open, can you find different categories of events in pygame?
+
+What attributes do ALL types of events have, and what attributes do only some have?
+
+## Hanlding events in Pygame
+```python
+import pygame, pygame.event
+for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+        should_quit_game = True
+    elif event.type == pygame.MOUSEMOTION:
+        mouse_position = event.pos
+    elif event.type == pygame.KEYUP:
+        print(f"Key pressed is {event.key}.")
+```
+
+## Updating in Pygame
+The update section of the loop, also called stepping, is sometimes skipped or incorporated into
+draw. This is when you update the state of the internal representation based on things that aren't
+events. One example: animation (changing the x coordinate of a sprite every frame).
+
+## Drawing in Pygame
+Have a look at the pygame docs again, this time at draw. What shapes can we draw?
+
+A *Surface* object in pygame is a pygame object for representing images, and what you draw to a
+ surface we can then draw to the screen.
+ 
+## A Worked Example
+Have a look at task2.py. It is the same game we did last week, only this time I've used the
+ inheritance to ensure all drawable *Thing*s can be looped over.
+ 
+This isn't a great example, let's write a better example. 
+
+# MyFirstGame
+## Introduction
+Over the next few tasks (over this workshop and the next) we are going to slowly build a "game
+" (twice).
+
+Please do save this work somewhere you can find it.
+
+## Draw
+Have a look at task3.py. It simply displays a gray screen, but has been written in an object
+ oriented way. There are two classes for you to complete: `House` and `Dog`. For each, create a 
+ `.__init__(...)` function and override the `.draw(surface)` method. At the moment, you decide
+  what needs passed into the init function. Use the documentation.
+  
+## Update/animation
+For the `Dog` class, override the `.update()` function to make the dog bob up and down over time
+. Hint: you don't want to bob entirely every frame.
+
+## Event Handling
+For the `Dog` again, override the `.on_event(event)` function to make the dog move left and right
+ when the arrow keys OR the 'A'/'D' keys are pressed. What is the difference between between
+  KEYDOWN and KEYUP?
+
 # See you next session!
 ## See you in two weeks time!  
 Next session:
+ - Hierarchical object structures, parent/child relationships
+ - Inter-object interaction
+ - Other PyGame features
