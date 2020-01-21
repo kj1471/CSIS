@@ -11,7 +11,6 @@ as much as you wish. You may add comments.\
 Get a browser and IDLE open...
 
 ## Challenges
-Typing as little code as you can, but using copy-paste as much as you need:
 - Create a function that prints the first n numbers in the Fibonacci sequence
 - Create a function that plays FizzBuzz given a number (3/5 version)
 - Create a file that plays space invadors using PyGame
@@ -196,7 +195,6 @@ For the `Dog` again, override the `.on_event(event)` function to make the dog mo
 
 # See you next session!
 ## See you in two weeks time!  
-Next session:
  - Hierarchical object structures, parent/child relationships
  - Inter-object interaction
  - Other PyGame features
