@@ -63,21 +63,34 @@ class Dog(DrawableObject):
         self.top = top
         self.width = width
         self.height = height
-        self.main_colour = (128, 128, 96)  # brown
+        self.colour = (128, 128, 96)  # brown
 
     def draw(self, surface):
         body_width = int(self.width * (4 / 5))  # body 80% width
         body_top = int(self.top + self.height * (1 / 3))
         body_height = int(self.height * (1 / 3))
+        leg_height = int(self.height * (1 / 3))
         head_rad = int(self.height * (1 / 4))
-        pygame.draw.rect(surface, self.main_colour,
+        leg_width = self.width / 6
+        pygame.draw.rect(surface, self.colour,
                          (  # left, top, width, height:
                              self.left, body_top, body_width, body_height
                          ))
-        pygame.draw.circle(surface, self.main_colour,
+        pygame.draw.circle(surface, self.colour,
                            (  # x, y
                                self.left + body_width, body_top
                            ), head_rad)
+        pygame.draw.rect(surface, self.colour,
+                         (  # left, top, width, height:
+                             self.left, body_top + body_height,
+                             leg_width, leg_height
+                         ))
+        pygame.draw.rect(surface, self.colour,
+                         (  # left, top, width, height:
+                             self.left + body_width - leg_width,
+                             body_top + body_height,
+                             leg_width, leg_height
+                         ))
 
 
 # Define the game
