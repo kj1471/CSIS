@@ -192,6 +192,11 @@ For the `Dog` class, override the `.update()` function to make the dog bob up an
 For the `Dog` again, override the `.on_event(event)` function to make the dog move left and right
  when the arrow keys OR the 'A'/'D' keys are pressed. What is the difference between between
   KEYDOWN and KEYUP?
+  
+## Multiple Objects
+Can you add two `Dog`s, one that uses arrows, the other A/D. Can you now use `.update()` OR 
+`.draw()` to detect or avoid collisions? Is this something you will do in the `Dog` or to the
+ game object? Why? Can you add more dogs that move randomly?
 
 # See you next session!
 ## See you in two weeks time!  
